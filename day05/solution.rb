@@ -39,4 +39,10 @@ arr.each do |pass|
 
 end
 
-puts arr.sort_by {|a| -a[:id]}[0][:id]
+# use some array math to see which number is missing from the array
+arr.sort_by! {|a| a[:id]}[0][:id]
+nums = arr.collect{|a| a[:id]}
+# dynamically generate the array
+each_id = nums[0].upto(nums[nums.length-1]).to_a
+
+puts each_id-nums
