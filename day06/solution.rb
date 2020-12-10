@@ -12,6 +12,20 @@ end
 
 sum = 0
 groups.each do |g|
-	sum += g.join.split('').uniq.length
+	responses = {}
+	g.each do |person|
+		person.split('').each do |answer|
+			if !responses[answer]
+				responses[answer] = 1
+			else 
+				responses[answer] += 1
+			end
+		end
+	end
+	responses.each do |question, num_yeses|
+		if num_yeses == g.length
+			sum += 1
+		end
+	end
 end
 puts sum
